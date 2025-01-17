@@ -6,6 +6,7 @@ from tqdm import tqdm
 from selenium import webdriver
 import schedule
 import time
+import random
 
 from util.api import send_api
 
@@ -58,7 +59,7 @@ def get_data(i, driver):
                 acreage = ""
 
             try:
-                contact_phone = driver.find_element(By.CSS_SELECTOR, "span.hidden-mobile").text.replace(" ", "")
+                contact_phone = driver.find_element(By.CSS_SELECTOR, "span.hidden-mobile").text.replace(" ", "").replace("***", random.randint(100, 999))
             except:
                 contact_phone = ""
             try:
