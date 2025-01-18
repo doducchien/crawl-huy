@@ -47,7 +47,7 @@ def get_phongtro_detail(detail_url):
         except AttributeError:
             title = ""
         try:
-            rent_fee = header.find('span', class_='text-price').get_text(strip=True).replace("triệu/tháng", "").strip()
+            rent_fee = header.find('span', class_='text-price').get_text(strip=True).replace("triệu/tháng", "").replace("đồng/tháng", "").strip()
             rent_fee = float(rent_fee)
         except AttributeError:
             rent_fee = None
@@ -139,7 +139,7 @@ def crawl_pages(base_url, pages=5):
 
 def task():
     print("Crawling data from phongtro123.com")
-    crawl_pages(base_url, pages=4)
+    crawl_pages(base_url, pages=2)
     print("Crawling data from phongtro123.com successfully")
 
 if __name__ == '__main__':
