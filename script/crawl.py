@@ -6,25 +6,12 @@ from tqdm import tqdm
 from selenium import webdriver
 import schedule
 import time
-import httpx
 
 from util.api import send_api
-async def send_data():
-    url = "https://example.com/api"
-    data = {"key1": "value1", "key2": "value2"}
-    async with httpx.AsyncClient() as client:
-        response = await client.post(url, json=data)
-        if response.status_code == 200:
-            print("Success:", response.json())
-        else:
-            print("Error:", response.status_code, response.text)
 
-# Chạy async (sử dụng asyncio nếu cần)
-import asyncio
-asyncio.run(send_data())
+URL = "http://127.0.0.1:8000/api/posts/receiver"
 
 def get_data(i, driver):
-    # Khởi động trình duyệt
     link = f"https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-ha-noi/p{i}"
 
     try:
@@ -118,9 +105,11 @@ def get_data(i, driver):
         with open(f"data/batdongsan_com_vn/listings_details_{i}.json", "w", encoding="utf-8") as f:
             json.dump(all_data, f, ensure_ascii=False, indent=4)
 
-        print(f"Hoàn thành việc crawl và lưu dữ liệu tại page thứ {1}")
+        print(f"Hoàn thành việc crawl và lưu dữ liệu tại page thứ {i}")
         print("Sending data to API...")
-        send_api("https://example.com/api", all_data)
+        send_api(URL, all_data)
+        print("sent data to API...")
+
 
     except:
         pass
@@ -128,13 +117,13 @@ def get_data(i, driver):
 def task():
     print("Crawling data from batdongsan.com.vn")
     driver = webdriver.Chrome()
-    for i in tqdm(range(17), desc="Crawling first 8 pages", unit="page"):
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
              get_data(i + 1, driver)
     driver.quit()
     print("Crawling data from batdongsan.com.vn successfully")
 
 if __name__ == '__main__':
-    # Lịch chạy hàng ngày lúc 2:00 sáng
+    # 1 phut chay 1 lan
     schedule.every(1).minutes.do(task)
 
     # Vòng lặp chạy mãi mãi để kiểm tra và thực thi các công việc được lên lịch
