@@ -4,16 +4,19 @@ import csv
 import time
 import json
 from util.api import send_api
+import schedule
 
 URL = "http://127.0.0.1:8000/api/posts/receiver"
 
 # URL của trang web
-base_url = "https://phongtro123.com"
-
+base_url = "https://phongtro123.com/tinh-thanh/ha-noi"
+entry_url = "https://phongtro123.com"
 # Ghi thông tin vào file JSON
 def save_to_json(data, filename):
+    print("Saving data to file...")
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
+        print("Saved data to file...")
 
 # Hàm lấy HTML từ trang web
 def get_html(url):
@@ -30,8 +33,7 @@ def get_detail_links(html):
     links = []
     menu = soup.find('ul', class_='post__listing')
     items = menu.find_all('li')
-    links =  [base_url + item.find('a', href=True)['href'] for item in items]
-    print(links)
+    links =  [entry_url + item.find('a', href=True)['href'] for item in items]
     return links
 
 # Hàm crawl thông tin chi tiết từ từng link
@@ -46,11 +48,12 @@ def get_phongtro_detail(detail_url):
             title = ""
         try:
             rent_fee = header.find('span', class_='text-price').get_text(strip=True).replace("triệu/tháng", "").strip()
+            rent_fee = float(rent_fee)
         except AttributeError:
             rent_fee = None
         
         try:
-            acreage = header.find('span', class_='').get_text(strip=True).replace("m", "m²").strip()
+            acreage = header.find('span', class_='').get_text(strip=True).strip()
         except AttributeError:
             acreage = ""
         
@@ -78,7 +81,8 @@ def get_phongtro_detail(detail_url):
             district = ""
 
         try:
-            contact_phone = soup.find('a', class_='btn btn-green btn-lg text-white d-flex justify-content-center rounded-4')['href'].replace("tel:", "")
+            contact_tag = soup.find('a', class_='btn btn-green btn-lg text-white d-flex justify-content-center rounded-4')
+            contact_phone = contact_tag['href'].replace("tel:", "") if contact_tag else ""
         except AttributeError:
             contact_phone = ""
 
@@ -129,9 +133,21 @@ def crawl_pages(base_url, pages=5):
             page_data.append(detail_data)   
             time.sleep(1)  # Thêm độ trễ để tránh bị chặn
         save_to_json(page_data, f"data/phongtro123/listings_details_{page}.json")
-        print("Sending data to API...")
-        send_api(URL, page_data)
-        print("Sent data to API...")
+        # print("Sending data to API...")
+        # send_api(URL, page_data)
+        # print("Sent data to API...")
+
+def task():
+    print("Crawling data from phongtro123.com")
+    crawl_pages(base_url, pages=4)
+    print("Crawling data from phongtro123.com successfully")
 
 if __name__ == '__main__':
-    crawl_pages(base_url, pages=4)
+    # 1 phut chay 1 lan
+    schedule.every(1).minutes.do(task)
+
+    # Vòng lặp chạy mãi mãi để kiểm tra và thực thi các công việc được lên lịch
+    while True:
+        print("Waiting for scheduled tasks to run...")
+        schedule.run_pending()
+        time.sleep(1)
