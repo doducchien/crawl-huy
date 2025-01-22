@@ -109,7 +109,7 @@ def get_data(i, link, district_, driver):
 
         print(f"Hoàn thành việc crawl và lưu dữ liệu tại page thứ {i}")
         print("Sending data to API...")
-        # send_api(URL, all_data)
+        send_api(URL, all_data)
         print("sent data to API...")
 
 
@@ -231,6 +231,116 @@ def task_crawl_thanh_xuan():
     print("Crawling data from batdongsan.com.vn in Thanh Xuan successfully")
 
 
+def task_crawl_chuong_my():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-chuong-my"
+    print("Crawling data from batdongsan.com.vn in Chuong My")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "chuong_my", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Chuong My successfully")
+
+
+def task_crawl_gia_lam():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-gia-lam"
+    print("Crawling data from batdongsan.com.vn in Gia Lam")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "gia_lam", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Gia Lam successfully")
+
+def task_crawl_hoai_duc():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-hoai-duc"
+    print("Crawling data from batdongsan.com.vn in Hoai Duc")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "hoai_duc", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Hoai Duc successfully")
+
+def task_crawl_me_linh():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-me-linh"
+    print("Crawling data from batdongsan.com.vn in Me Linh")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "me_linh", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Me Linh successfully")
+
+def task_crawl_phu_xuyen():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-phu-xuyen"
+    print("Crawling data from batdongsan.com.vn in Phu Xuyen")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "phu_xuyen", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Phu Xuyen successfully")
+
+def task_crawl_quoc_oai():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-quoc-oai"
+    print("Crawling data from batdongsan.com.vn in Quoc Oai")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "quoc oai", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Quoc Oai successfully")
+
+def task_crawl_soc_son():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-soc-son"
+    print("Crawling data from batdongsan.com.vn in Soc Son")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "soc_son", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Soc Son successfully")
+
+def task_crawl_thach_that():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-thach-that"
+    print("Crawling data from batdongsan.com.vn in Thach That")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "thach_that", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Thach That successfully")
+
+def task_crawl_thanh_tri():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-thanh-tri"
+    print("Crawling data from batdongsan.com.vn in Thanh Tri")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "thanh_tri", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Thanh Tri successfully")
+
+def task_crawl_thuong_tin():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-thuong-tin"
+    print("Crawling data from batdongsan.com.vn in Thuong Tin")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "thuong_tin", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Thuong Tin successfully")
+
+def task_crawl_dan_phuong():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-dan-phuong"
+    print("Crawling data from batdongsan.com.vn in Dan Phuong")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+             get_data(i + 1, link, "dan_phuong", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Dan Phuong successfully")
+
+def task_crawl_dong_anh():
+    link = "https://batdongsan.com.vn/cho-thue-nha-tro-phong-tro-dong-anh"
+    print("Crawling data from batdongsan.com.vn in Dong Anh")
+    driver = webdriver.Chrome()
+    for i in tqdm(range(3), desc="Crawling first 8 pages", unit="page"):
+                get_data(i + 1, link, "dong_anh", driver)
+    driver.quit()
+    print("Crawling data from batdongsan.com.vn in Dong Anh successfully")
+
+
 if __name__ == '__main__':
     # 1 phut chay 1 lan
     schedule.every(1).minutes.do(task_crawl_cau_giay)
@@ -245,7 +355,18 @@ if __name__ == '__main__':
     schedule.every(1).minutes.do(task_crawl_nam_tu_liem)
     schedule.every(1).minutes.do(task_crawl_tay_ho)
     schedule.every(1).minutes.do(task_crawl_thanh_xuan)
-
+    schedule.every(1).minutes.do(task_crawl_chuong_my)
+    schedule.every(1).minutes.do(task_crawl_gia_lam)
+    schedule.every(1).minutes.do(task_crawl_hoai_duc)
+    schedule.every(1).minutes.do(task_crawl_me_linh)
+    schedule.every(1).minutes.do(task_crawl_phu_xuyen)
+    schedule.every(1).minutes.do(task_crawl_quoc_oai)
+    schedule.every(1).minutes.do(task_crawl_soc_son)
+    schedule.every(1).minutes.do(task_crawl_thach_that)
+    schedule.every(1).minutes.do(task_crawl_thanh_tri)
+    schedule.every(1).minutes.do(task_crawl_thuong_tin)
+    schedule.every(1).minutes.do(task_crawl_dan_phuong)
+    schedule.every(1).minutes.do(task_crawl_dong_anh)
 
     # Vòng lặp chạy mãi mãi để kiểm tra và thực thi các công việc được lên lịch
     while True:

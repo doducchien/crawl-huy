@@ -107,7 +107,7 @@ def get_phongtro_detail(detail_url):
         }
     except AttributeError:
         print("not ok")
-        return None
+        pass
 
 # Ghi thông tin vào file CSV
 def save_to_csv(data, filename):
@@ -133,9 +133,9 @@ def crawl_pages(base_url, district, pages=5):
             page_data.append(detail_data)   
             time.sleep(1)  # Thêm độ trễ để tránh bị chặn
         save_to_json(page_data, f"data/phongtro123/{district}/listings_details_{page}.json")
-        # print("Sending data to API...")
-        # send_api(URL, page_data)
-        # print("Sent data to API...")
+        print("Sending data to API...")
+        send_api(URL, page_data)
+        print("Sent data to API...")
 
 
 
@@ -211,6 +211,79 @@ def task_crawl_thanh_xuan():
     crawl_pages(url, district="thanh_xuan", pages=2)
     print("Crawling data from phongtro123.com successfully in Thanh Xuan")
 
+def task_crawl_chuong_my():
+    url = base_url + "/huyen-chuong-my"
+    print("Crawling data from phongtro123.com in Chuong My")
+    crawl_pages(url, district="chuong_my", pages=2)
+    print("Crawling data from phongtro123.com successfully in Thanh Xuan")
+
+def task_crawl_gia_lam():
+    url = base_url + "/huyen-gia-lam"
+    print("Crawling data from phongtro123.com in Gia Lam")
+    crawl_pages(url, district="gia_lam", pages=2)
+    print("Crawling data from phongtro123.com successfully in Gia Lam")
+
+def task_crawl_hoai_duc():
+    url = base_url + "/huyen-hoai-duc"
+    print("Crawling data from phongtro123.com in Hoai Duc")
+    crawl_pages(url, district="hoai_duc", pages=2)
+    print("Crawling data from phongtro123.com successfully in Hoai Duc")
+
+def task_crawl_me_linh():
+    url = base_url + "/huyen-me-linh"
+    print("Crawling data from phongtro123.com in Thanh Xuan")
+    crawl_pages(url, district="me_linh", pages=2)
+    print("Crawling data from phongtro123.com successfully in Me Linh")
+
+def task_crawl_phu_xuyen():
+    url = base_url + "/huyen-phu-xuyen"
+    print("Crawling data from phongtro123.com in Phu Xuyen")
+    crawl_pages(url, district="phu_xuyen", pages=2)
+    print("Crawling data from phongtro123.com successfully in Phu Xuyen")
+
+def task_crawl_quoc_oai():
+    url = base_url + "/huyen-quoc-oai"
+    print("Crawling data from phongtro123.com in Quoc Oai")
+    crawl_pages(url, district="quoc_oai", pages=2)
+    print("Crawling data from phongtro123.com successfully in Quoc Oai")
+
+def task_crawl_soc_son():
+    url = base_url + "/huyen-soc-son"
+    print("Crawling data from phongtro123.com in Quoc Oai")
+    crawl_pages(url, district="soc_son", pages=2)
+    print("Crawling data from phongtro123.com successfully in Quoc Oai")
+
+def task_crawl_thach_that():
+    url = base_url + "/huyen-thach-that"
+    print("Crawling data from phongtro123.com in Thach That")
+    crawl_pages(url, district="thach_that", pages=2)
+    print("Crawling data from phongtro123.com successfully in Thach That")
+
+def task_crawl_thanh_tri():
+    url = base_url + "/huyen-thanh-tri"
+    print("Crawling data from phongtro123.com in Thanh Tri")
+    crawl_pages(url, district="thanh_tri", pages=2)
+    print("Crawling data from phongtro123.com successfully in Thanh Tri")
+
+def task_crawl_thuong_tin():
+    url = base_url + "/huyen-thuong-tin"
+    print("Crawling data from phongtro123.com in Thuong Tin")
+    crawl_pages(url, district="thuong_tin", pages=2)
+    print("Crawling data from phongtro123.com successfully in Thuong Tin")
+
+def task_crawl_dan_phuong():
+    url = base_url + "/huyen-dan-phuong"
+    print("Crawling data from phongtro123.com in Dan Phuong")
+    crawl_pages(url, district="dan_phuong", pages=2)
+    print("Crawling data from phongtro123.com successfully in Dan Phuong")
+
+def task_crawl_dong_anh():
+    url = base_url + "/huyen-dong-anh"
+    print("Crawling data from phongtro123.com in Dong Anh")
+    crawl_pages(url, district="dong_anh", pages=2)
+    print("Crawling data from phongtro123.com successfully in Dong Anh")
+
+
 
 
 if __name__ == '__main__':
@@ -227,6 +300,19 @@ if __name__ == '__main__':
     schedule.every(1).minutes.do(task_crawl_nam_tu_liem)
     schedule.every(1).minutes.do(task_crawl_tay_ho)
     schedule.every(1).minutes.do(task_crawl_thanh_xuan)
+    schedule.every(1).minutes.do(task_crawl_chuong_my)
+    schedule.every(1).minutes.do(task_crawl_gia_lam)
+    schedule.every(1).minutes.do(task_crawl_hoai_duc)
+    schedule.every(1).minutes.do(task_crawl_me_linh)
+    schedule.every(1).minutes.do(task_crawl_phu_xuyen)
+    schedule.every(1).minutes.do(task_crawl_quoc_oai)
+    schedule.every(1).minutes.do(task_crawl_soc_son)
+    schedule.every(1).minutes.do(task_crawl_thach_that)
+    schedule.every(1).minutes.do(task_crawl_thanh_tri)
+    schedule.every(1).minutes.do(task_crawl_thuong_tin)
+    schedule.every(1).minutes.do(task_crawl_dan_phuong)
+    schedule.every(1).minutes.do(task_crawl_dong_anh)
+
 
     # Vòng lặp chạy mãi mãi để kiểm tra và thực thi các công việc được lên lịch
     while True:
